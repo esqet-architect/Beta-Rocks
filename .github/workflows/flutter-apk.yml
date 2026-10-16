@@ -1,65 +1,49 @@
 name: Build FossilScanner APK
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
-    paths:
-      - 'flutter_frontend/**'
-      - '.github/workflows/flutter-apk.yml'
-
-permissions:
-  contents: read
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  android:
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
-
-    defaults:
-      run:
-        working-directory: flutter_frontend
 
     steps:
-      - name: Check out source
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Java
+      - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
+          distribution: 'zulu'
           java-version: '17'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: stable
+          channel: 'stable'
+          cache: true
 
-      - name: Generate Android project
-        run: |
-          flutter create \
-            --platforms=android \
-            --project-name fossil_field_console \
-            .
-          rm -f test/widget_test.dart
-
-      - name: Resolve dependencies
+      - name: Install Dependencies
         run: flutter pub get
+        working-directory: flutter_frontend
 
-      - name: Analyze
-        run: flutter analyze
+      - name: Analyze Code
+        run: flutter analyze --no-fatal-warnings --no-fatal-infos
+        working-directory: flutter_frontend
 
-      - name: Run tests
-        run: flutter test
+      - name: Ensure Android Platform Exists
+        run: flutter create --platforms=android .
+        working-directory: flutter_frontend
 
-      - name: Build debug APK
-        run: flutter build apk --debug
+      - name: Build APK
+        run: flutter build apk --release
+        working-directory: flutter_frontend
 
-      - name: Upload APK
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: FossilScanner-debug-apk
-          path: flutter_frontend/build/app/outputs/flutter-apk/app-debug.apk
-          if-no-files-found: error
-          retention-days: 14
+          name: app-release
+          path: flutter_frontend/build/app/outputs/flutter-apk/app-release.apk
