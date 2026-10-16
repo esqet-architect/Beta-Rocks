@@ -1,0 +1,18 @@
+name: fossil_field_console
+description: FossilScanner field console and phi measurement lab
+publish_to: none
+version: 0.4.1+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
