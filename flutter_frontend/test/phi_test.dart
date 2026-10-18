@@ -6,3 +6,4 @@ void main(){
  test('reject zero',(){expect(()=>phiCheck(0,1,2),throwsArgumentError);});
  test('symmetric',(){expect(phiCheck(1,2,2)['ratio'],phiCheck(2,1,2)['ratio']);});
 }
+

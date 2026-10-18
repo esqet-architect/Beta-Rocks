@@ -31,3 +31,4 @@ class _MenuState extends State<Menu>{
  return Scaffold(appBar:AppBar(title:const Column(crossAxisAlignment:CrossAxisAlignment.start,children:[Text('FOSSILSCANNER',style:TextStyle(letterSpacing:2,fontWeight:FontWeight.w800,fontSize:19)),Text('MULTI-MODAL FIELD CONSOLE',style:TextStyle(fontSize:10,color:copper,letterSpacing:1.4))])),body:SafeArea(child:IndexedStack(index:page,children:screens)),bottomNavigationBar:NavigationBar(selectedIndex:page,onDestinationSelected:(i)=>setState(()=>page=i),destinations:const[NavigationDestination(icon:Icon(Icons.dashboard_outlined),label:'Operations'),NavigationDestination(icon:Icon(Icons.architecture),label:'φ lab'),NavigationDestination(icon:Icon(Icons.cable),label:'Connection')]));
  }
 }
+

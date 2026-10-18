@@ -45,3 +45,4 @@ jobs:
           name: FossilScanner-menu-debug
           path: flutter_frontend/build/app/outputs/flutter-apk/app-debug.apk
           if-no-files-found: error
+

@@ -66,3 +66,4 @@ if __name__=='__main__':
  print('Token:',TOKEN,flush=True)
  print('Review allowlisted scripts before launching them from the app.',flush=True)
  ThreadingHTTPServer(('127.0.0.1',8765),Handler).serve_forever()
+

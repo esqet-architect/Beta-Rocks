@@ -7,3 +7,4 @@ Map<String,dynamic> phiCheck(double a,double b,double tolerance){
  final deviation=100*(ratio-goldenRatio).abs()/goldenRatio;
  return {'a':a,'b':b,'ratio':ratio,'phi':goldenRatio,'deviation_percent':deviation,'tolerance_percent':tolerance,'within_tolerance':deviation<=tolerance,'interpretation':'Numerical proximity only, not evidence of biological origin or a golden spiral'};
 }
+
